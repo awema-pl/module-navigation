@@ -25,9 +25,22 @@ return [
             [
                 'name' => 'Home2',
                 'link' => '/home2',
+                'icon' => 'speed'
+            ],
+            [
+                'name' => 'Home3',
+                'link' => '/home3',
+                'icon' => 'speed'
+            ],
+            [
+                'name' => 'With Home2',
                 'icon' => 'intelligence',
 
                 'children' => [
+                    [
+                        'name' => 'Home2',
+                        'link' => '/home2',
+                    ],
                     [
                         'name' => 'Home3',
                         'link' => '/home3',
@@ -35,16 +48,26 @@ return [
                 ]
             ],
             [
+                'name' => 'Home4',
+                'link' => '/home4',
+                'icon' => 'speed',
+            ],
+            [
+                'name' => 'Home44',
+                'link' => '/home4/home',
+                'icon' => 'speed',
+            ],
+            [
                 'name' => 'Allegro',
-                'link' => '/',
+                'link' => '/allegro',
                 'icon' => 'briefcase',
 
-                'children' => [
-                    [
-                        'name' => 'Powiązania Allegro',
-                        'link' => '/easy-product-allegro/relations',
-                    ]
-                ]
+//                'children' => [
+//                    [
+//                        'name' => 'Powiązania Allegro',
+//                        'link' => '/easy-product-allegro/relations',
+//                    ]
+//                ]
             ]
         ],
         'top' => [

@@ -61,10 +61,20 @@ class NavGenerator
         }
         $path = trim($path, '/');
         if (!($item['exact'] ?? false)) {
-            $path = $path . '*';
+            $path = $path;
         }
 
-        return Request::is($path);
+        $segments = Request::segments();
+        $pathSegments = explode('/', $path);
+        foreach ($segments as $index => $segment){
+            if (isset($pathSegments[$index]) && $segment === $pathSegments[$index]){
+                return true;
+            }
+        }
+
+        return false;
+
+//        return Request::is($path);
     }
 
     /**
