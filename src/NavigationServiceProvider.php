@@ -3,6 +3,8 @@
 
 namespace AwemaPL\Navigation;
 
+use App\Http\Kernel;
+use AwemaPL\Navigation\Middlewares\AddNavigationComponent;
 use AwemaPL\Navigation\NavChecker;
 use AwemaPL\Navigation\NavGenerator;
 use Illuminate\Support\Facades\View;
@@ -12,6 +14,9 @@ class NavigationServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->app->make(\Illuminate\Contracts\Http\Kernel::class)
+            ->appendMiddlewareToGroup('web', AddNavigationComponent::class);
+
         $this->publishes([
             __DIR__ . '/../config/navigation.php' => config_path('navigation.php'),
         ], 'config');
@@ -20,21 +25,7 @@ class NavigationServiceProvider extends ServiceProvider
             'navigation'
         );
 
-        $generator = new NavGenerator();
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'navigation');
 
-        $navs = $generator->getNavs();
-        foreach ($navs as $var => $items) {
-            NavChecker::check($items);
-            View::composer('*', function ($view) use ($var, $items) {
-                $view->with($var, $items);
-            });
-        }
-
-        if (!empty($navs = $generator->getTopNavs())) {
-            NavChecker::check($navs);
-            View::composer('*', function ($view) use ($navs) {
-                $view->with(config('navigation.top_var_name'), $navs);
-            });
-        }
     }
 }

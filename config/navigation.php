@@ -1,5 +1,4 @@
 <?php
-
 return [
     /*
      |--------------------------------------------------------------------------
@@ -8,74 +7,86 @@ return [
      |--------------------------------------------------------------------------
      */
     'top_var_name' => 'children_top',
-
     /*
      |--------------------------------------------------------------------------
      | Nav menus
      |--------------------------------------------------------------------------
      */
     'navs' => [
-
         'sidebar' => [
             [
-                'name' => 'Home1',
+                'name' => 'Home',
                 'link' => '/home',
-                'icon' => 'speed'
-            ],
-            [
-                'name' => 'Home2',
-                'link' => '/home2',
-                'icon' => 'speed'
-            ],
-            [
-                'name' => 'Home3',
-                'link' => '/home3',
-                'icon' => 'speed'
-            ],
-            [
-                'name' => 'With Home2',
-                'icon' => 'intelligence',
-
-                'children' => [
+                'icon' => 'speed',
+                'children_top' => [
+                    [
+                        'name' => 'Home',
+                        'link' => '/home',
+                        //                        'key' => 'auth.failed',
+                    ],
                     [
                         'name' => 'Home2',
                         'link' => '/home2',
-                    ],
-                    [
-                        'name' => 'Home3',
-                        'link' => '/home3',
                     ]
                 ]
             ],
             [
-                'name' => 'Home4',
-                'link' => '/home4',
+                'name' => 'Home2',
+                'link' => '/home2',
                 'icon' => 'speed',
             ],
             [
-                'name' => 'Home44',
-                'link' => '/home4/home',
+                'name' => 'Home3',
+                'link' => '/home3',
                 'icon' => 'speed',
+            ],   [
+                'name' => 'Permissions',
+                'key' => 'navigation::pages.permissions',
+                'link' => '/admin/permissions',
+                'permissions' => 'manage_permissions',
+                'icon' => 'speed',
+                'children' => [
+                    [
+                        'name' => 'Permissions',
+                        'link' => '/admin/permissions',
+                        'key' => 'navigation::pages.permissions',
+                    ],
+                    [
+                        'name' => 'Roles',
+                        'link' => '/admin/roles',
+                        'key' => 'navigation::pages.roles',
+                    ]
+                ],
+                'children_top' => [
+                    [
+                        'name' => 'Permissions',
+                        'link' => '/admin/permissions',
+                        'key' => 'navigation::pages.permissions',
+                    ],
+                    [
+                        'name' => 'Roles',
+                        'link' => '/admin/roles',
+                        'key' => 'navigation::pages.roles',
+                    ]
+                ]
             ],
+        ],
+        'adminSidebar' => [],
+        'guestSidebar' => [],
+        'userNavigation' => [
             [
-                'name' => 'Allegro',
-                'link' => '/allegro',
-                'icon' => 'briefcase',
-
-//                'children' => [
-//                    [
-//                        'name' => 'Powiązania Allegro',
-//                        'link' => '/easy-product-allegro/relations',
-//                    ]
-//                ]
+                'name' => 'Logout',
+                'link' => '/logout',
+                'key' => 'navigation::pages.logout',
+                'class'=>'awema-spa-ignore',
             ]
         ],
-        'top' => [
-            [
-                'name' => 'a',
-                'link' => '/',
-            ]
-        ]
+//        'top_var_name' => [
+//            [
+//                'name' => 'Wyloguj się',
+//                'link' => '/logout',
+//            ]
+//        ]
+    ],
 
-    ]
 ];

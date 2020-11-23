@@ -5,7 +5,7 @@
 Via Composer
 
 ``` bash
-$ composer require awema-pl/module-navigation.php
+$ composer require awema-pl/module-navigation
 ```
 
 The package will automatically register itself.
@@ -30,3 +30,8 @@ By default link is set as active if a current url contains it.
 You can add an `exact` param to the nav item if you want it active only if the current url equal to nav link.
 
 To exclude nav item from active binding add an `'active' => false` param to it. 
+
+## Translate name
+
+For translane name in menu use key `key`. As value set exaple `auth.register`. This
+translate name will be get from `_p($key)` method.

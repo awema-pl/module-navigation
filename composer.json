@@ -1,6 +1,6 @@
 {
     "name": "awema-pl/module-navigation",
-    "description": "Navigation package for AwemaIO layouts",
+    "description": "Navigation package for Awema layouts",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,8 @@
         "AwemaIO"
     ],
     "require": {
-        "illuminate/support": "~5|~6|~7|~8|~9"
+        "illuminate/support": "~5|~6|~7|~8|~9",
+        "awema-pl/module-localization-helper": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -43,6 +44,15 @@
             ]
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Localization-helper",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
