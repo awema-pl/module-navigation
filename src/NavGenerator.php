@@ -41,9 +41,9 @@ class NavGenerator
             $nav = $this->translate($nav);
             $nav = $this->permission($nav);
             $nav = $this->existLink($nav);
+            $nav = $this->setClass($nav);
         }
         $this->navs = $navs;
-
         return $navs;
     }
 
@@ -55,7 +55,6 @@ class NavGenerator
         if (empty($navs)) {
             $this->getNavs(true);
         }
-
         return $this->top_navs['navs'];
     }
 
@@ -167,6 +166,7 @@ class NavGenerator
                 $item[$top_var_name] = $this->setActive($item[$top_var_name], $level, true);
                 $item[$top_var_name] = $this->translate($item[$top_var_name]);
                 $item[$top_var_name] = $this->permission($item[$top_var_name]);
+                $item[$top_var_name] = $this->setClass($item[$top_var_name]);
                 $item[$top_var_name] = $this->existLink($item[$top_var_name]);
 
                 if (($this->top_navs['level'] <= $level) && $active) {
@@ -189,6 +189,7 @@ class NavGenerator
 
             if (!empty($item['children'] ?? null)) {
                 $item['children'] = $this->permission($item['children']);
+                $item['children'] = $this->setClass($item['children']);
             }
 
             if (!empty($item['link']) ?? null){
@@ -232,6 +233,29 @@ class NavGenerator
             }
         }
 
+        return $items;
+    }
+
+
+    /**
+     * Set class
+     *
+     * @param array $items
+     * @param int|null $level
+     * @return array
+     */
+    protected function setClass(array $items): array
+    {
+        foreach ($items as $index=> &$item) {
+
+            if (!empty($item['children'] ?? null)) {
+                $item['children'] = $this->setClass($item['children']);
+            }
+            $class = $item['class'] ?? null;
+            if ($class) {
+                $item[$index]['class'] = $class;
+            }
+        }
         return $items;
     }
 
