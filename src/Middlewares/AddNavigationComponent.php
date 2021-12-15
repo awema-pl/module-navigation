@@ -29,6 +29,7 @@ class AddNavigationComponent
         $generator = new NavGenerator();
 
         $navs = $generator->getNavs();
+
         foreach ($navs as $var => $items) {
             NavChecker::check($items);
             View::composer('*', function ($view) use ($var, $items) {
